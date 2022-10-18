@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}"></title>
+</head>
+<body>
+<h1 th:text="${titulo}"></h1>
+<a th:href="@{/productos}">Volver</a>
+<div>
+    <ul>
+        <li th:text="${producto.nombre}"></li>
+        <li th:text="'Id: '+${producto.id}"></li>
+        <li th:text="'Precio: $'+${#numbers.formatCurrency(producto.precio)}"></li>
+        <li th:text="'Fecha creacion: '+${#calendars.format(producto.createdAt,'dd/MM/yyyy')}"></li>
+    </ul>
+</div>
+<div th:if="${producto.foto != null && #strings.length(producto.foto) > 0}">
+    <img th:src="@{/productos/uploads/img/}+${producto.foto}" th:alt="'Foto-'+${producto.nombre}" style="max-width: 30%">
+</div>
+</body>
+</html>
